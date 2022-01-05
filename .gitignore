@@ -11,7 +11,8 @@ node_modules
 /app/PluginData/*
 !/app/PluginData/.gitkeep
 /app/template/*
-!/app/template/admin
+/app/template/admin/*
+!/app/template/admin/.gitkeep
 !/app/template/default
 !/app/template/user_data
 !/app/template/smartphone
