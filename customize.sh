@@ -23,6 +23,7 @@ git rm composer.lock
 
 # 不要なファイルを削除
 git rm -r app/Customize
+git rm -r app/DoctrineMigrations
 git rm -r app/Plugin/AnnotatedRouting
 git rm -r app/Plugin/EntityExtension
 git rm -r app/Plugin/EntityForm
