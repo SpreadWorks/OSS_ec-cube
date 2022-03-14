@@ -32,6 +32,9 @@ git rm -r app/Plugin/HogePlugin
 git rm -r app/Plugin/MigrationSample
 git rm -r app/Plugin/PurchaseProcessors
 git rm -r app/Plugin/QueryCustomize
+git rm -r html/upload
+git rm -r html/user_data
+
 
 # html ディレクトリをドキュメントルートにする
 if grep -q '/html/' app/config/eccube/packages/framework.yaml; then
