@@ -3,37 +3,38 @@
 BASE_DIR=$(cd $(dirname $0); pwd)
 cd ${BASE_DIR}
 
-# .gitignore の最終行にcomposer関連のファイルを追加
-if ! grep -q 'composer.json' .gitignore; then
-	echo 'composer.json' >> .gitignore
-fi
+items='
+composer.json
+composer.lock
+/symfony.lock
+/app/Customize
+/app/DoctrineMigrations
+/app/Plugin
+/app/PluginData
+/app/template
+/html/.htaccess
+/html/plugin
+/html/upload
+/html/user_data
+';
 
-if ! grep -q 'composer.lock' .gitignore; then
-	echo 'composer.lock' >> .gitignore
-fi
+for item in $items; do
+    tmp_item=$(echo $item | sed -e 's/\//\\\//g')
+	# ディレクトリ、ファイルの削除
+	if ! grep -q $item .gitignore; then
+	if [ ! -h $item ]; then
+		if [ -d $item ]; then
+			git rm -r .$item
+		elif [ -f $item ]; then
+			git rm $item
+		fi
+	fi
+	fi
+	# .gitignore 削除、追加
+    sed -e '/'$tmp_item'/d' -i .gitignore
+    echo $item >> .gitignore
+done
 
-if ! grep -q 'app/Customize' .gitignore; then
-	echo 'app/Customize' >> .gitignore
-fi
-
-# composer関連のファイルを削除
-git rm composer.json
-git rm composer.lock
-
-
-# 不要なファイルを削除
-git rm -r app/Customize
-git rm -r app/DoctrineMigrations
-git rm -r app/Plugin/AnnotatedRouting
-git rm -r app/Plugin/EntityExtension
-git rm -r app/Plugin/EntityForm
-git rm -r app/Plugin/FormExtension
-git rm -r app/Plugin/HogePlugin
-git rm -r app/Plugin/MigrationSample
-git rm -r app/Plugin/PurchaseProcessors
-git rm -r app/Plugin/QueryCustomize
-git rm -r html/upload
-git rm -r html/user_data
 
 
 # html ディレクトリをドキュメントルートにする
@@ -44,6 +45,11 @@ fi
 # ログ設定を変更
 if grep -q 'max_files: 60' app/config/eccube/packages/prod/monolog.yml; then
 	sed -i -e "s/max_files: 60/max_files: 7/g" app/config/eccube/packages/prod/monolog.yml
+fi
+
+# index.php の追加
+if [ ! -f html/index.php ]; then
+	echo '<?php require_once "../index.php";' > html/index.php
 fi
 
 # プロジェクトフォルダで利用するために__DIR__で定義されているパスを修正
