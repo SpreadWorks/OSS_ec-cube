@@ -35,8 +35,9 @@ node_modules
 .web-server-pid
 ###< symfony/web-server-bundle ###
 app/Customize
-composer.json
-composer.lock
+
+/composer.json
+/composer.lock
 /symfony.lock
 /app/Customize
 /app/DoctrineMigrations
@@ -47,3 +48,4 @@ composer.lock
 /html/plugin
 /html/upload
 /html/user_data
+/app/config/eccube/packages/order_state_machine.php

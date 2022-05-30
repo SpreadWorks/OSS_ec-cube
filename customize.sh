@@ -4,8 +4,8 @@ BASE_DIR=$(cd $(dirname $0); pwd)
 cd ${BASE_DIR}
 
 items='
-composer.json
-composer.lock
+/composer.json
+/composer.lock
 /symfony.lock
 /app/Customize
 /app/DoctrineMigrations
@@ -16,23 +16,33 @@ composer.lock
 /html/plugin
 /html/upload
 /html/user_data
+/app/config/eccube/packages/order_state_machine.php
 ';
 
 for item in $items; do
+	echo "Start : "$item
     tmp_item=$(echo $item | sed -e 's/\//\\\//g')
 	# ディレクトリ、ファイルの削除
+	
 	if ! grep -q $item .gitignore; then
-	if [ ! -h $item ]; then
-		if [ -d $item ]; then
+		if [ -h .$item ]; then
+			echo "Skip symlink"
+		elif [ -d .$item ]; then
 			git rm -r .$item
-		elif [ -f $item ]; then
-			git rm $item
+			echo "git rm -r ."$item
+		elif [ -f .$item ]; then
+			git rm .$item
+			echo "git rm ."$item
+		else
+			echo "Skip unknown"
 		fi
-	fi
+	else
+		echo "Skip registed .gitignore" 
 	fi
 	# .gitignore 削除、追加
     sed -e '/'$tmp_item'/d' -i .gitignore
     echo $item >> .gitignore
+	echo "end"
 done
 
 
