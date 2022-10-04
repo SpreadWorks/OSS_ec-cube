@@ -50,7 +50,7 @@ ignore=/src/Eccube/Resource/template/default/Mail/\*.html.twig;
 echo "Start : "$ignore
 git rm --cached --ignore-unmatch .$ignore
 echo "git rm --ignore-unmatch ."$ignore
-tmp=$(echo $ignore | sed -e 's/\//\\\//g')
+tmp=$(echo $ignore | sed -e 's/\//\\\//g' -e 's/\*/\\\*/g')
 sed -e '/'$tmp'/d' -i .gitignore
 echo $ignore >> .gitignore
 echo "end"
