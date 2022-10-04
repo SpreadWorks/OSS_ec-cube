@@ -4,6 +4,9 @@ BASE_DIR=$(cd $(dirname $0); pwd)
 cd ${BASE_DIR}
 
 items='
+/composer.json
+/composer.lock
+/symfony.lock
 /app/Customize
 /app/DoctrineMigrations
 /app/Plugin
@@ -44,11 +47,13 @@ done
 
 # HTMLメールテンプレートの削除
 ignore=/src/Eccube/Resource/template/default/Mail/\*.html.twig;
+echo "Start : "$ignore
 git rm --cached --ignore-unmatch .$ignore
 echo "git rm --ignore-unmatch ."$ignore
 tmp=$(echo $ignore | sed -e 's/\//\\\//g')
 sed -e '/'$tmp'/d' -i .gitignore
 echo $ignore >> .gitignore
+echo "end"
 
 # html ディレクトリをドキュメントルートにする
 if grep -q '/html/' app/config/eccube/packages/framework.yaml; then
