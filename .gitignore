@@ -30,11 +30,6 @@ node_modules
 /.php-cs-fixer.cache
 /.php-cs-fixer.*.php
 ###< friendsofphp/php-cs-fixer ###
-
-# デフォルトのHTMLメールテンプレートを除外
-src/Eccube/Resource/template/default/Mail/*.html.twig
-
-# customize.sh実行時に除外
 /app/Customize
 /app/DoctrineMigrations
 /app/Plugin
@@ -45,3 +40,4 @@ src/Eccube/Resource/template/default/Mail/*.html.twig
 /html/upload
 /html/user_data
 /app/config/eccube/packages/order_state_machine.php
+/src/Eccube/Resource/template/default/Mail/*.html.twig

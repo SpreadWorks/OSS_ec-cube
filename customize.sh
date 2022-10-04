@@ -42,7 +42,13 @@ for item in $items; do
 	echo "end"
 done
 
-
+# HTMLメールテンプレートの削除
+ignore=/src/Eccube/Resource/template/default/Mail/\*.html.twig;
+git rm --cached --ignore-unmatch .$ignore
+echo "git rm --ignore-unmatch ."$ignore
+tmp=$(echo $ignore | sed -e 's/\//\\\//g')
+sed -e '/'$tmp'/d' -i .gitignore
+echo $ignore >> .gitignore
 
 # html ディレクトリをドキュメントルートにする
 if grep -q '/html/' app/config/eccube/packages/framework.yaml; then
