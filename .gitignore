@@ -42,4 +42,4 @@ node_modules
 /html/plugin
 /html/upload
 /html/user_data
-/app/config/eccube/packages/order_state_machine.php
+/src/Eccube/Resource/template/default/Mail/*.html.twig
