@@ -18,6 +18,7 @@ composer.phar
 !/app/template/admin
 !/app/template/default
 !/app/template/user_data
+!/app/template/smartphone
 /app/proxy/entity/*
 !/app/proxy/entity/.gitkeep
 /html/plugin/*
@@ -44,6 +45,7 @@ composer.phar
 *.php~
 .env
 .maintenance
+*.neon
 
 ###> symfony/phpunit-bridge ###
 .phpunit
@@ -60,4 +62,3 @@ composer.phar
 ###< symfony/web-server-bundle ###
 composer.json
 composer.lock
-app/Customize

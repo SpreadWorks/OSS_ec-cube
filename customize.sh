@@ -12,10 +12,6 @@ if ! grep -q 'composer.lock' .gitignore; then
 	echo 'composer.lock' >> .gitignore
 fi
 
-if ! grep -q 'app/Customize' .gitignore; then
-	echo 'app/Customize' >> .gitignore
-fi
-
 # composer関連のファイルを削除
 git rm composer.json
 git rm composer.lock
@@ -47,11 +43,10 @@ if [ ! -f html/index.php ]; then
 	echo '<?php require_once "../index.php";' > html/index.php
 fi
 
-#if [ ! -f html/.htaccess ]; then
-#	cp .htaccess html/
-#fi
+if [ ! -f html/.htaccess ]; then
+	cp .htaccess html/
+fi
 
 #git add .
 #git commit -m 'customized'
 #git push origin
-
