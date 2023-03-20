@@ -23,20 +23,20 @@ framework:
     php_errors:
         log: true
     assets:
-      base_path: '/html/template/%eccube.theme%'
+      base_path: '/template/%eccube.theme%'
       packages:
         admin:
-          base_path: '/html/template/admin'
+          base_path: '/template/admin'
         save_image:
-          base_path: '/html/upload/save_image'
+          base_path: '/upload/save_image'
         plugin:
-          base_path: '/html/plugin'
+          base_path: '/plugin'
         install:
-          base_path: '/html/template/install'
+          base_path: '/template/install'
         temp_image:
-          base_path: '/html/upload/temp_image'
+          base_path: '/upload/temp_image'
         user_data:
-          base_path: '/html/user_data'
+          base_path: '/user_data'
         # json_manifest_path: '%kernel.project_dir%/public/build/manifest.json'
     cache:
         # this value is used as part of the "namespace" generated for the cache item keys
