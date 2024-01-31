@@ -11,7 +11,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Eccube\Tests\Doctrine;
+namespace Eccube\Tests\Doctrine\TimeZone;
 
 use Eccube\Entity\Product;
 use Eccube\Repository\ProductRepository;
